@@ -7,7 +7,7 @@ const handleUserRouter = require('./src/router/user')
 //设置cookie的过期时间
 const getCookieExpires = () => {
     const d = new Date()
-    d.setTime(d.getTime() + (24*60*60*1000))
+    d.setTime(d.getTime() + (2*24*60*60*1000))
     return d.toGMTString()
 }
 

@@ -1,4 +1,6 @@
 const { exec } = require('../db/mysql')
+const xss = require('xss')
+
 const getList = (author, keyword) => {
     //返回假数据
     // return [
@@ -49,8 +51,8 @@ const getDetail = (id) => {
 const newBlog = (blogData = {}) => {
     //blogData包括标题，内容
     //console.log('newBlog blogData.....', blogData)
-    const title = blogData.title
-    const content = blogData.content
+    const title = xss(blogData.title)
+    const content = xss(blogData.content)
     const author = blogData.author
     const createTime = Date.now()
     const sql = `
@@ -67,8 +69,8 @@ const newBlog = (blogData = {}) => {
 
 const updateBlog = (id, blogData = {}) => {
    // console.log('update blog....', id,blogData)
-    const title = blogData.title
-    const content = blogData.content
+    const title = xss(blogData.title)
+    const content = xss(blogData.content)
     const sql = `
         update blogs set title = '${title}', content = '${content}' where id = ${id}
     `
